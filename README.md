@@ -268,11 +268,5 @@ dotnet ef migrations remove
 
 # Drop the database
 dotnet ef database drop
-🤝 Contributing
 
-Pull requests and issues are welcome!
-For major changes, please open an issue first to discuss what you’d like to change.
 
-📧 Contact
-
-If you have questions or suggestions, feel free to open an issue.
