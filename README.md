@@ -1,213 +1,234 @@
-# shop-webapi-dotnetcore
-🛒 Shop API
+# 🛒 Shop API
 
-A complete RESTful API for an online store built with ASP.NET Core 9.0 and the Onion (Clean) Architecture.
+یک RESTful API کامل برای فروشگاه آنلاین که با ASP.NET Core 9.0 و معماری Onion (Clean Architecture) پیاده‌سازی شده است.
 
-📋 Table of Contents
+## 📋 فهرست مطالب
 
-Features
+- [ویژگی‌ها](#ویژگیها)
+- [معماری پروژه](#معماری-پروژه)
+- [تکنولوژی‌ها](#تکنولوژیها)
+- [پیش‌نیازها](#پیشنیازها)
+- [نصب و راه‌اندازی](#نصب-و-راهاندازی)
+- [ساختار پروژه](#ساختار-پروژه)
+- [API Endpoints](#api-endpoints)
+- [تنظیمات](#تنظیمات)
 
-Project Architecture
+## ✨ ویژگی‌ها
 
-Technologies
+- 🏗️ **معماری Onion (Clean Architecture)** - جداسازی کامل لایه‌ها و وابستگی‌ها
+- 🔐 **احراز هویت JWT** - سیستم امن ورود و ثبت‌نام
+- 📦 **الگوی Repository** - دسترسی به داده‌ها به صورت Generic و Testable
+- 🗺️ **AutoMapper** - نگاشت خودکار بین Entity و DTO
+- 📊 **Entity Framework Core** - ORM قدرتمند برای SQL Server
+- 🔍 **Swagger/OpenAPI** - مستندات خودکار API
+- ⚡ **CORS** - پشتیبانی از درخواست‌های Cross-Origin
+- 🛡️ **Exception Handling Middleware** - مدیریت متمرکز خطاها
+- 📝 **Serilog** - لاگ‌گیری پیشرفته
 
-Prerequisites
+## 🏛️ معماری پروژه
 
-Installation & Setup
+پروژه بر اساس **Onion Architecture** (Clean Architecture) طراحی شده است:
 
-Project Structure
-
-API Endpoints
-
-Configuration
-
-✨ Features
-
-🏗️ Onion (Clean) Architecture – complete separation of layers and dependencies
-
-🔐 JWT Authentication – secure login and registration system
-
-📦 Repository Pattern – generic, testable data access
-
-🗺️ AutoMapper – automatic mapping between entities and DTOs
-
-📊 Entity Framework Core – powerful ORM for SQL Server
-
-🔍 Swagger/OpenAPI – automatic API documentation
-
-⚡ CORS – support for cross-origin requests
-
-🛡️ Exception Handling Middleware – centralized error handling
-
-📝 Serilog – advanced logging
-
-🏛️ Project Architecture
-
-The project is designed using Onion Architecture (Clean Architecture):
+```
 ┌─────────────────────────────────────────┐
 │         Presentation Layer              │
 │      (Controllers, Program.cs)          │
 ├─────────────────────────────────────────┤
 │       Application Layer                 │
-│   (DTOs, Services, Mappings)            │
+│   (DTOs, Services, Mappings)           │
 ├─────────────────────────────────────────┤
 │      Infrastructure Layer               │
-│ (Data, Repositories, Middleware)        │
+│ (Data, Repositories, Middleware)       │
 ├─────────────────────────────────────────┤
 │          Core/Domain Layer              │
-│     (Entities, Interfaces)              │
+│     (Entities, Interfaces)             │
 └─────────────────────────────────────────┘
-Advantages
+```
 
-✅ Full separation of business logic from implementation details
+### مزایای این معماری:
 
-✅ High testability
+- ✅ جداسازی کامل منطق کسب‌وکار از جزئیات پیاده‌سازی
+- ✅ تست‌پذیری بالا
+- ✅ قابلیت نگهداری و توسعه آسان
+- ✅ وابستگی به سمت داخل (Dependency Inversion)
 
-✅ Easy to maintain and extend
+## 🚀 تکنولوژی‌ها
 
-✅ Dependency inversion (dependencies point inward)
+- **Framework:** ASP.NET Core 9.0
+- **Database:** SQL Server (Entity Framework Core)
+- **Authentication:** JWT Bearer
+- **Mapping:** AutoMapper
+- **Logging:** Serilog
+- **API Documentation:** Swagger/Swashbuckle
+- **Architecture Pattern:** Onion Architecture
+- **Design Pattern:** Repository Pattern (Generic)
 
-🚀 Technologies
+## 📋 پیش‌نیازها
 
-Framework: ASP.NET Core 9.0
+- [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
+- [SQL Server](https://www.microsoft.com/sql-server) (LocalDB یا SQL Server Express)
+- یک IDE مانند [Visual Studio 2022](https://visualstudio.microsoft.com/) یا [VS Code](https://code.visualstudio.com/)
 
-Database: SQL Server (Entity Framework Core)
+## ⚙️ نصب و راه‌اندازی
 
-Authentication: JWT Bearer
+### 1. کلون کردن پروژه
 
-Mapping: AutoMapper
+```bash
+git clone https://github.com/nahidmoradi/shop-webapi-dotnetcore.git
+cd shop-webapi-dotnetcore
+```
 
-Logging: Serilog
+### 2. بازیابی پکیج‌ها
 
-API Documentation: Swagger/Swashbuckle
+```bash
+dotnet restore
+```
 
-Architecture Pattern: Onion Architecture
+### 3. تنظیم Connection String
 
-Design Pattern: Generic Repository Pattern
+فایل `appsettings.json` را ویرایش کنید:
 
-📋 Prerequisites
-
-.NET 9.0 SDK
-
-SQL Server
- (LocalDB or SQL Server Express)
-
-An IDE such as Visual Studio 2022
- or VS Code
-
-⚙️ Installation & Setup
-1. Clone the repository
-  git clone https://github.com/nahidmoradi/shop-webapi-dotnetcore.git
-  cd shop-webapi-dotnetcore
-2. Restore packages
-   dotnet restore
-3. Configure the Connection String
-
-Edit appsettings.json:
-  {
+```json
+{
   "ConnectionStrings": {
     "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=ShopDb;Trusted_Connection=True;"
   }
 }
-4. Run the migration
-  dotnet ef database update
-5. Run the project
-  dotnet run
-The API will be available at http://localhost:5008.
+```
 
-6. Open Swagger
+### 4. اجرای Migration
 
-Visit:
-  http://localhost:5008/swagger
+```bash
+dotnet ef database update
+```
+
+### 5. اجرای پروژه
+
+```bash
+dotnet run
+```
+
+API در آدرس `http://localhost:5008` در دسترس خواهد بود.
+
+### 6. مشاهده Swagger
+
+به آدرس زیر مراجعه کنید:
+```
+http://localhost:5008/swagger
+```
+
+## 📁 ساختار پروژه
+
+```
 Shop/
 ├── Core/
 │   └── Domain/
-│       ├── Entities/
+│       ├── Entities/           # مدل‌های دامین
 │       │   ├── Product.cs
 │       │   ├── Category.cs
 │       │   ├── User.cs
 │       │   ├── Order.cs
 │       │   └── OrderItem.cs
-│       └── Interfaces/
+│       └── Interfaces/         # اینترفیس‌های Repository
 │           ├── IRepository.cs
 │           ├── IProductRepository.cs
 │           ├── ICategoryRepository.cs
 │           └── IUserRepository.cs
 │
 ├── Application/
-│   ├── DTOs/
+│   ├── DTOs/                   # Data Transfer Objects
 │   │   ├── ProductDto.cs
 │   │   ├── CategoryDto.cs
 │   │   └── UserDto.cs
-│   ├── Services/
-│   └── Mappings/
+│   ├── Services/               # سرویس‌های Application
+│   └── Mappings/               # AutoMapper Profiles
 │       └── MappingProfile.cs
 │
 ├── Infrastructure/
-│   ├── Data/
+│   ├── Data/                   # DbContext و Configuration
 │   │   ├── AppDbContext.cs
 │   │   └── SeedData.cs
-│   ├── Repositories/
+│   ├── Repositories/           # پیاده‌سازی Repository
 │   │   ├── Repository.cs
 │   │   ├── ProductRepository.cs
 │   │   ├── CategoryRepository.cs
 │   │   └── UserRepository.cs
-│   └── Middleware/
+│   └── Middleware/             # Middleware ها
 │       └── ExceptionHandlingMiddleware.cs
 │
 ├── Presentation/
-│   └── Controllers/
+│   └── Controllers/            # API Controllers
 │       ├── ProductsController.cs
 │       ├── CategoriesController.cs
 │       └── AuthController.cs
 │
-
-├── Migrations/
-├── Program.cs
-├── appsettings.json
+├── Migrations/                 # EF Core Migrations
+├── Program.cs                  # نقطه شروع برنامه
+├── appsettings.json           # تنظیمات
 └── README.md
-🔌 API Endpoints
-🔐 Authentication
-| Method | Endpoint             | Description         | Auth |
-| ------ | -------------------- | ------------------- | ---- |
-| POST   | `/api/auth/register` | Register a new user | ❌    |
-| POST   | `/api/auth/login`    | Login and get token | ❌    |
-📦 Products
-| Method | Endpoint             | Description                        | Auth    |
-| ------ | -------------------- | ---------------------------------- | ------- |
-| GET    | `/api/products`      | Get product list (with pagination) | ❌       |
-| GET    | `/api/products/{id}` | Get product details                | ❌       |
-| POST   | `/api/products`      | Create a new product               | ✅ Admin |
-| PUT    | `/api/products/{id}` | Update a product                   | ✅ Admin |
-| DELETE | `/api/products/{id}` | Delete a product                   | ✅ Admin |
-📑 Categories
-| Method | Endpoint               | Description           | Auth    |
-| ------ | ---------------------- | --------------------- | ------- |
-| GET    | `/api/categories`      | Get category list     | ❌       |
-| GET    | `/api/categories/{id}` | Get category details  | ❌       |
-| POST   | `/api/categories`      | Create a new category | ✅ Admin |
-| PUT    | `/api/categories/{id}` | Update a category     | ✅ Admin |
-| DELETE | `/api/categories/{id}` | Delete a category     | ✅ Admin |
-Query Parameters
-  - page – page number (default: 1)  
-  - pageSize – items per page (default: 10)  
-  - q – search by name or description
-Example:
-  GET /api/products?page=1&pageSize=20&q=laptop
-⚙️ Configuration
-JWT Configuration
+```
 
-In appsettings.json:
-  {
+## 🔌 API Endpoints
+
+### 🔐 Authentication
+
+| Method | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| POST | `/api/auth/register` | ثبت‌نام کاربر جدید | ❌ |
+| POST | `/api/auth/login` | ورود و دریافت Token | ❌ |
+
+### 📦 Products
+
+| Method | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| GET | `/api/products` | دریافت لیست محصولات (با صفحه‌بندی) | ❌ |
+| GET | `/api/products/{id}` | دریافت جزئیات یک محصول | ❌ |
+| POST | `/api/products` | ایجاد محصول جدید | ✅ Admin |
+| PUT | `/api/products/{id}` | ویرایش محصول | ✅ Admin |
+| DELETE | `/api/products/{id}` | حذف محصول | ✅ Admin |
+
+### 📑 Categories
+
+| Method | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| GET | `/api/categories` | دریافت لیست دسته‌بندی‌ها | ❌ |
+| GET | `/api/categories/{id}` | دریافت جزئیات یک دسته‌بندی | ❌ |
+| POST | `/api/categories` | ایجاد دسته‌بندی جدید | ✅ Admin |
+| PUT | `/api/categories/{id}` | ویرایش دسته‌بندی | ✅ Admin |
+| DELETE | `/api/categories/{id}` | حذف دسته‌بندی | ✅ Admin |
+
+### Query Parameters (لیست محصولات و دسته‌بندی‌ها)
+
+- `page` - شماره صفحه (پیش‌فرض: 1)
+- `pageSize` - تعداد آیتم در هر صفحه (پیش‌فرض: 10)
+- `q` - جستجو در نام و توضیحات
+
+**مثال:**
+```
+GET /api/products?page=1&pageSize=20&q=laptop
+```
+
+## ⚙️ تنظیمات
+
+### JWT Configuration
+
+در فایل `appsettings.json`:
+
+```json
+{
   "Jwt": {
     "Key": "your-secret-key-min-32-characters",
     "Issuer": "ShopAPI",
     "Audience": "ShopClient"
   }
 }
-CORS Configuration
+```
 
-In Program.cs, configure allowed origins:
+### CORS Configuration
+
+در `Program.cs`، origin های مجاز را تنظیم کنید:
+
+```csharp
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngular", policy =>
@@ -218,8 +239,13 @@ builder.Services.AddCors(options =>
               .AllowCredentials();
     });
 });
-🧪 Testing the API
-Register a new user
+```
+
+## 🧪 تست API
+
+### ثبت‌نام کاربر
+
+```bash
 POST /api/auth/register
 Content-Type: application/json
 
@@ -228,7 +254,11 @@ Content-Type: application/json
   "email": "test@example.com",
   "password": "Test@123"
 }
-Login
+```
+
+### ورود
+
+```bash
 POST /api/auth/login
 Content-Type: application/json
 
@@ -236,39 +266,55 @@ Content-Type: application/json
   "username": "testuser",
   "password": "Test@123"
 }
-Get products
-  GET /api/products?page=1&pageSize=10
-Create a product (requires Token)
-  POST /api/products
+```
+
+### دریافت محصولات
+
+```bash
+GET /api/products?page=1&pageSize=10
+```
+
+### ایجاد محصول (نیاز به Token)
+
+```bash
+POST /api/products
 Authorization: Bearer {your-jwt-token}
 Content-Type: application/json
 
 {
-  "name": "Asus Laptop",
-  "description": "Gaming laptop",
+  "name": "لپ تاپ ایسوس",
+  "description": "لپ تاپ گیمینگ",
   "price": 25000000,
   "stock": 10,
   "categoryId": 1
 }
-🔧 Useful Commands
-# Build the project
+```
+
+## 🔧 دستورات مفید
+
+```bash
+# بیلد پروژه
 dotnet build
 
-# Run the project
+# اجرای پروژه
 dotnet run
 
-# Create a new migration
+# ایجاد Migration جدید
 dotnet ef migrations add MigrationName
 
-# Apply migrations
+# اعمال Migration به دیتابیس
 dotnet ef database update
 
-# Remove the last migration
+# حذف آخرین Migration
 dotnet ef migrations remove
 
-# Drop the database
+# پاک کردن دیتابیس
 dotnet ef database drop
+```
 
-## 👨‍💻 Developer
+
+## 👨‍💻 توسعه‌دهنده
+
 - GitHub: [nahidmoradi](https://github.com/nahidmoradi)
 - Email: n.morady@gmail.com
+
