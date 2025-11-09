@@ -269,7 +269,6 @@ dotnet ef migrations remove
 # Drop the database
 dotnet ef database drop
 
-## 👨‍💻 توسعه‌دهنده
-# Developer
+## 👨‍💻 Developer
 - GitHub: [nahidmoradi](https://github.com/nahidmoradi)
 - Email: n.morady@gmail.com
