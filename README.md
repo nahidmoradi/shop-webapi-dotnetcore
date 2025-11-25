@@ -316,3 +316,6 @@ dotnet ef database drop
 
 - GitHub: [nahidmoradi](https://github.com/nahidmoradi)  
 - Email: n.morady@gmail.com
+
+## Linkedin
+ https://www.linkedin.com/in/nahid-moradi-84959a65/
